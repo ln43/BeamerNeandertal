@@ -19,6 +19,18 @@
 \usepackage{hyperref}
 \usepackage{cases}
 
+\AtBeginSection[]{
+  \begin{frame}
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+    \usebeamerfont{title}\insertsectionhead\par%
+  \end{beamercolorbox}
+  \vfill
+  \end{frame}
+}
+
+
 %-------------------------------------------------------
 % INFORMATION IN THE TITLE PAGE
 %-------------------------------------------------------
@@ -45,12 +57,20 @@
    \insertlogo
 \end{frame}
 
+\frame[plain,noframenumbering]{\tableofcontents}
+
+\section{Introduction}
 \begin{frame}{Contexte biologique}{}
+
+???
+peut-être pas besoin de slide... le slide avec le titre intro peut suffire 
+
 \end{frame}
 
 
-%Presentation des modèles
-\begin{frame}{Présentation des modèles étudiés}{Cadre général}
+\section{Présentation des modèles étudiés}
+\subsection*{Cadre général}
+\begin{frame}{Cadre général}{}
 \begin{block}{Modèle général}
 	\begin{equation}
 		\frac{\partial u(t,x)}{\partial t}=f(u(t,x))+d\Delta u(t,x), \quad t \in \mathbb{R}, x \in \mathbb{R}
@@ -62,7 +82,8 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Présentation des modèles étudiés}{Croissance logistique}
+\subsection{Croissance logistique}
+\begin{frame}{Croissance Logistique}{}
 \begin{block}{Croissance Logistique}
 	$$\frac{\partial u(t,x)}{\partial t}=f(u(t,x))+d\Delta u(t,x)$$
 	$$f(u(t,x))=\alpha u (1 - \dfrac{u}{K}) $$
@@ -73,7 +94,8 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Présentation des modèles étudiés}{Modèle Allee}
+\subsection{Effet Allee}
+\begin{frame}{Modèle Allee}{}
 \begin{block}{Modèle Allee}
 	$$\frac{\partial u(t,x)}{\partial t}=f(u(t,x))+d\Delta u(t,x)$$
 	$$f(u(t,x))=ku(1-u)(u-A)$$
@@ -85,7 +107,8 @@
 $$k=\frac{4}{(1-A)^2}$$
 \end{frame}
 
-\begin{frame}{Présentation des modèles étudiés}{Système de Lotka-Volterra}
+\subsection{Système de Lotka-Volterra}
+\begin{frame}{Système de Lotka-Volterra}{}
 \begin{block}{Modèle de compétition}
 	$$\begin{cases} \frac{\partial u(t,x)}{\partial t} = f(u,v) + d_1\Delta u\\ \frac{\partial v(t,x)}{\partial t} = g(u,v) + d_2 \Delta v \\ 
 \end{cases}$$
@@ -100,9 +123,9 @@ $$k=\frac{4}{(1-A)^2}$$
 \end{itemize}
 \end{frame}
 
-%Analyse mathématiques
-%%Croissance logistique
-\begin{frame}{Analyse mathématique}{Croissance logistique}
+\section{Analyse mathématiques}
+\subsection{Croissance logistique}
+\begin{frame}{Croissance logistique}{}
 \begin{itemize}
 	\item[$\bullet$] Équilibres: $u=0 {\ et\ } u=K$
 	\item[$\bullet$] MONOSTABLE
@@ -110,8 +133,8 @@ $$k=\frac{4}{(1-A)^2}$$
 \end{itemize}
 \end{frame}
 
-%%effet Allee
-\begin{frame}{Analyse mathématique}{Effet Allee}
+\subsection{Effet Allee}
+\begin{frame}{Effet Allee}{}
 \begin{itemize}
 	\item[$\bullet$] Équilibres: $u=0, u=A \text{ et } u=1$
 	\item[$\bullet$] BISTABLE
@@ -123,17 +146,79 @@ $$k=\frac{4}{(1-A)^2}$$
 \end{itemize}
 \end{frame}
 
-%%Competition
-\begin{frame}{Analyse mathématique}{Système de Lolkta Volterra}
+\subsection{Modèle avec compétition}
+\begin{frame}{Système de Lotka Volterra}{}
+???
 \end{frame}
 
-%Simulations numeriques
-%%Croissance logistique
-\begin{frame}{Simulations Numériques}{Croissance logistique}
+\section{Simulations numériques}
+\subsection{Croissance logistique}
+\begin{frame}{Propagation 1D}{}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.45\linewidth]{SimulationKPP/TrigerEffect/fronts}\hfill
+	\includegraphics[width=0.55\linewidth]{SimulationKPP/TrigerEffect/Surf}\hfill
+	\caption{Propagation du front d'onde en 1D avec une petite perturbation initiale}
+\end{figure}
 \end{frame}
 
-%% Effet Allee
-\begin{frame}{Simulations Numériques}{Modèle Allee : $\ d=0.5, A=0.25 (k=64), u_0=0.1$}
+\begin{frame}{Propagation 2D}{}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{SimulationKPP/KPP13}
+    \caption{Propagation du front d'onde en 2D }
+\end{figure}
+\end{frame}
+
+\begin{frame}{Propagation 2D vu de haut}{}
+\begin{figure}[H]
+	\centering
+    \includegraphics[width=1\linewidth]{SimulationKPP/KPP15}
+    \caption{Propagation du front d'onde en 2D}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Effet d'une barrière géographique franchissable}{}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\linewidth]{SimulationKPP/Enviro/montagne1}\hfill
+	\includegraphics[width=0.5\linewidth]{SimulationKPP/Enviro/montagne3}\hfill
+	\includegraphics[width=0.5\linewidth]{SimulationKPP/Enviro/montagne5}\hfill
+	\includegraphics[width=0.5\linewidth]{SimulationKPP/Enviro/montagne8}
+	\caption{Diffusion 2D de la population face à une montagne}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Effet d'une barrière géographique franchissable}{Vue de haut}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{SimulationKPP/Enviro/montagneVueHaut}
+	\caption{Diffusion 2D de la population face à une montagne}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Effet d'une barrière géographique infranchissable}{}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\linewidth]{SimulationKPP/Enviro/poleNord1}\hfill
+	\includegraphics[width=0.5\linewidth]{SimulationKPP/Enviro/poleNord3}\hfill
+	\includegraphics[width=0.5\linewidth]{SimulationKPP/Enviro/poleNord5}\hfill
+	\includegraphics[width=0.5\linewidth]{SimulationKPP/Enviro/poleNord8}
+	\caption{Diffusion 2D}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Effet d'une barrière géographique infranchissable}{Vue de haut}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{SimulationKPP/Enviro/PolenordVueHaut}
+	\caption{Diffusion 2D}
+\end{figure}
+\end{frame}
+
+
+\subsection{Effet Allee}
+\begin{frame}{$\ d=0.5, A=0.25 (k=64), u_0=0.1$}{}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.40\linewidth, height=3cm]{Allee/F2311}\hfill
@@ -147,7 +232,7 @@ $$k=\frac{4}{(1-A)^2}$$
 \end{figure}
 \end{frame}
 
-\begin{frame}{Simulations Numériques}{Modèle Allee : $\ d=0.5, A=0.25 (k=64), u_0=0.5$}
+\begin{frame}{$\ d=0.5, A=0.25 (k=64), u_0=0.5$}{}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.40\linewidth, height=3cm]{Allee/F2312}\hfill
@@ -161,7 +246,7 @@ $$k=\frac{4}{(1-A)^2}$$
 \end{figure}
 \end{frame}
 
-\begin{frame}{Simulations Numériques}{Modèle Allee : $\ d=0.5, A=0.75 (k=7.1), u_0=0.5$}
+\begin{frame}{$\ d=0.5, A=0.75 (k=7.1), u_0=0.5$}{}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.40\linewidth, height=3cm]{Allee/F2322}\hfill
@@ -175,7 +260,7 @@ $$k=\frac{4}{(1-A)^2}$$
 \end{figure}
 \end{frame}
 
-\begin{frame}{Simulations Numériques}{Modèle Allee : $\ d=0.5, A=0.75 (k=7.1), u_0=0.9$}
+\begin{frame}{$\ d=0.5, A=0.75 (k=7.1), u_0=0.9$}{}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.40\linewidth, height=3cm]{Allee/F2323}\hfill
@@ -189,7 +274,7 @@ $$k=\frac{4}{(1-A)^2}$$
 \end{figure}
 \end{frame}
 
-\begin{frame}{Simulations Numériques}{Modèle Allee :  $\ d=0.5, A=0.5 (k=16), u_0=0.1$}
+\begin{frame}{$\ d=0.5, A=0.5 (k=16), u_0=0.1$}{}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.40\linewidth, height=3cm]{Allee/F2331}\hfill
@@ -203,7 +288,7 @@ $$k=\frac{4}{(1-A)^2}$$
 \end{figure}
 \end{frame}
 
-\begin{frame}{Simulations Numériques}{Modèle Allee :$\ d=0.5, A=0.5 (k=16), u_0=0.9$}
+\begin{frame}{$\ d=0.5, A=0.5 (k=16), u_0=0.9$}{}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.40\linewidth, height=3cm]{Allee/F2333}\hfill
@@ -217,8 +302,8 @@ $$k=\frac{4}{(1-A)^2}$$
 \end{figure}
 \end{frame}
 
-%%Competition
-\begin{frame}{Simulations Numériques}{Système de Lotka Volterra}
+\subsection{Modèle avec compétition}
+\begin{frame}{Front d'ondes}{}
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.48\linewidth]{Comp/neand.png}
@@ -227,13 +312,15 @@ $$k=\frac{4}{(1-A)^2}$$
 \end{figure}
 \end{frame}
 
-\begin{frame}{Simulations Numériques}{Système de Lotka Volterra}
+\begin{frame}{Diffusion 1D}{}
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.2]{Comp/CompDiff2.png}
 \caption{Diffusion 1D}
 \end{figure}
 \end{frame}
+
+\section{Conclusion}
 
 
 \end{document}
