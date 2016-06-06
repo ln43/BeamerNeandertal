@@ -103,10 +103,24 @@ $$k=\frac{4}{(1-A)^2}$$
 %Analyse mathématiques
 %%Croissance logistique
 \begin{frame}{Analyse mathématique}{Croissance logistique}
+\begin{itemize}
+	\item[$\bullet$] Équilibres: $u=0 {\ et\ } u=K$
+	\item[$\bullet$] MONOSTABLE
+	\item[$\bullet$] Vitesse minimale $c_0=2\sqrt{\alpha}$
+\end{itemize}
 \end{frame}
 
 %%effet Allee
 \begin{frame}{Analyse mathématique}{Effet Allee}
+\begin{itemize}
+	\item[$\bullet$] Équilibres: $u=0, u=A \text{ et } u=1$
+	\item[$\bullet$] BISTABLE
+	\item[$\bullet$] 2 scénarios selon la valeur de A :
+	\begin{itemize}
+		\item[-] $A<0.5$ : $c>0$ $\rightarrow$ "1 envahit 0"
+		\item[-] $A>0.5$ : $c<0$ $\rightarrow$ "0 envahit 1"
+	\end{itemize}
+\end{itemize}
 \end{frame}
 
 %%Competition
@@ -205,6 +219,20 @@ $$k=\frac{4}{(1-A)^2}$$
 
 %%Competition
 \begin{frame}{Simulations Numériques}{Système de Lotka Volterra}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.48\linewidth]{Comp/neand.png}
+\includegraphics[width=0.48\linewidth]{Comp/homo.png}
+\caption{Evolution des fronts d'onde au cours du temps}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Simulations Numériques}{Système de Lotka Volterra}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.2]{Comp/CompDiff2.png}
+\caption{Diffusion 1D}
+\end{figure}
 \end{frame}
 
 
