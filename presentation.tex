@@ -47,7 +47,7 @@
 %-------------------------------------------------------
 
 \title[Population Néanderthal]{\textbf{Evolution de la population \\ d'\textit{Homo Néanderthalensis}}}
-\author[Y. Adimy M. Simon H. Vassal]{Y. Adimy M. Simon H. Vassal}
+\author[Y. Adimy, M. Simon, H. Vassal]{Y. Adimy M. Simon H. Vassal}
 \institute[]{INSA Lyon - Bioinformatique et Modélisation}
 \date{13 Juin 2016}
 \titlegraphic{\includegraphics[width=3cm]{neanderthal-sapiens.jpg}}
@@ -68,7 +68,7 @@
    \insertlogo
 \end{frame}
 
-\frame[plain,noframenumbering]{\tableofcontents}
+%\frame[plain,noframenumbering]{\tableofcontents}
 
 
 
@@ -104,13 +104,14 @@
 		\frac{\partial u(t,x)}{\partial t}=f(u(t,x))+d\Delta u(t,x),
 	\end{equation}
 	\vspace{0.1cm}
-	$$	\quad t \in \mathbb{R}, x \in \mathbb{R}^n, \quad n=1 \text{ ou } n=2$$
+	$$	\quad t \in \mathbb{R}, \quad x \in \mathbb{R}^n, \quad n=1 \text{ ou } n=2,$$
 
 	
 \end{block}
 \begin{itemize}
-	\item u(t,x) : Densité de population à la position x et au temps t ($ u(t,x) \in[0,1]$) 
-    \item $d$ : Constante de diffusion 
+	\item u(t,x) : Densité de population à la position x et au temps t. 
+    \item $d$ : Constante de diffusion. 
+    \item $f$ : Terme de réaction.
 \end{itemize}
 \end{frame}
 
@@ -118,12 +119,11 @@
 \subsection{Présentation du modèle}
 \begin{frame}{Présentation du modèle}{}
 \begin{block}{Croissance Logistique}
-	$$\frac{\partial u(t,x)}{\partial t}=f(u(t,x))+d\Delta u(t,x)$$
-	$$f(u(t,x))=\alpha u (1 - \dfrac{u}{K}) $$
+	$$\frac{\partial u(t,x)}{\partial t}=\alpha  u(t,x) \left( 1 - \dfrac{u(t,x)}{K}\right) +d\Delta u(t,x),$$
 \end{block}
 \begin{itemize}
-    \item $K$ : Capacité du milieu liée à des facteurs locaux environnementaux (K> 0) 
-    \item $\alpha$ : Taux de croissance intrinsèque de la population ($\alpha >0$)
+    \item $K$ : Capacité du milieu liée à des facteurs locaux environnementaux ($K> 0$).
+    \item $\alpha$ : Taux de croissance intrinsèque de la population ($\alpha >0$).
 \end{itemize}
 \end{frame}
 
@@ -135,16 +135,13 @@
 	\end{block}
 	
 	\begin{block}{Analyse de l'équation de réaction-diffusion}
-	 L'équation de réaction diffusion est de type KPP monostable
+	 L'équation de réaction diffusion est de type \textbf{KPP monostable}.
 		\begin{itemize}
 		
-			\item[$\bullet$] Front d'onde U(z) monotone unique se propageant à une vitesse $c> c_0$ telle que $c_0$ est unique avec les conditions aux bords $lim_{z \to + \infty}U(z) =0$ et  $lim_{z \to - \infty} U(z)=K$
-			\vspace{0.1cm}
-			\item[$\bullet$] $c_0 =2 \sqrt{\alpha}$
+			\item[$\bullet$] Pour tout $c> 2 \sqrt{\alpha}$ il existe un unique front d'onde U(z) monotone se propageant à la vitesse c tel que $lim_{z \to + \infty}U(z) =0$ et  $lim_{z \to - \infty} U(z)=K$.
+
 			
-			\vspace{0.5cm}
-			
-			\item[$\bullet$] Effet \textit{"hair trigger"}: Si on prend une condition initiale positive proche de l'équilibre 0 sur un intervalle borné, la solution converge vers K à la vitesse $c_0$ 
+			\item[$\bullet$] Effet \textit{"hair trigger"}: Si on prend une condition initiale positive sur un intervalle borné et nul en dehors de l'intervalle, alors la solution converge vers K à la vitesse $2\sqrt{\alpha}$.
 			
 		\end{itemize}
 	\end{block}	
@@ -172,7 +169,7 @@
 	\centering
 	\includegraphics[width=0.45\linewidth]{SimulationKPP/TrigerEffect/fronts}\hfill
 	\includegraphics[width=0.55\linewidth]{SimulationKPP/TrigerEffect/Surf}\hfill
-	\caption{Propagation du front d'onde en 1D avec une petite perturbation initiale}
+	\caption{Propagation du front d'onde en 1D avec une petite perturbation initiale à support compact.}
 \end{figure}
 \end{frame}
 
