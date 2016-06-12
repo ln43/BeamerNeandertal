@@ -18,7 +18,11 @@
 \usepackage{float}
 \usepackage{hyperref}
 \usepackage{cases}
-
+\usepackage[justification=centering]{caption}
+%\usepackage{media9}
+%\usepackage{movie15}
+\usepackage{multimedia}
+\usepackage{url}
 \AtBeginSection[]{
   \begin{frame}
   \vfill
@@ -30,13 +34,20 @@
   \end{frame}
 }
 
+\AtBeginSection[]
+{
+	\begin{frame}{Plan}
+		\tableofcontents[currentsection]
+	\end{frame}
+}
+
 
 %-------------------------------------------------------
 % INFORMATION IN THE TITLE PAGE
 %-------------------------------------------------------
 
-\title[Population Néanderthal]{\textbf{Evolution de la population d'Homo Néanderthal}}
-\author[Y. Adimy M. Simon H. Vassal]{Y. Adimy M. Simon H. Vassal}
+\title[Population Néanderthal]{\textbf{Evolution de la population \\ d'\textit{Homo Néanderthalensis}}}
+\author[Y. Adimy, M. Simon, H. Vassal]{Y. Adimy M. Simon H. Vassal}
 \institute[]{INSA Lyon - Bioinformatique et Modélisation}
 \date{13 Juin 2016}
 \titlegraphic{\includegraphics[width=3cm]{neanderthal-sapiens.jpg}}
@@ -57,26 +68,50 @@
    \insertlogo
 \end{frame}
 
-\frame[plain,noframenumbering]{\tableofcontents}
+%\frame[plain,noframenumbering]{\tableofcontents}
+
+
+
+
 
 \section{Introduction}
-\begin{frame}{Contexte biologique}{}
+\subsection{La disparition mystérieuse de Néandertal}
+\begin{frame}{La disparition mystérieuse de Néandertal}
+	\begin{columns}
+		\begin{column}{6cm}
+			\begin{figure}[L]
+				\includegraphics[width=0.8\linewidth]{Carte}\vfill
+				\caption{Régions occupées par Néandertal à différentes époques en Europe}
+			\end{figure}
+		\end{column}
+		\begin{column}{6cm}
+			\begin{figure}[R]
+				\includegraphics[width=0.8\linewidth]{GrotteBrunel} \vfill 
+				\caption{La grotte de Bruniquel, plus ancienne construction humaine }
+			\end{figure}
+		\end{column}
+	\end{columns}
+\end{frame}	
 
-???
-peut-être pas besoin de slide... le slide avec le titre intro peut suffire 
 
-\end{frame}
 
-\section{Cadre général}
+
+\subsection{Cadre général}
+
 \begin{frame}{Cadre général}{}
 \begin{block}{Modèle général}
 	\begin{equation}
-		\frac{\partial u(t,x)}{\partial t}=f(u(t,x))+d\Delta u(t,x), \quad t \in \mathbb{R}, x \in \mathbb{R}
+		\frac{\partial u(t,x)}{\partial t}=f(u(t,x))+d\Delta u(t,x),
 	\end{equation}
+	\vspace{0.1cm}
+	$$	\quad t \in \mathbb{R}, \quad x \in \mathbb{R}^n, \quad n=1 \text{ ou } n=2,$$
+
+	
 \end{block}
 \begin{itemize}
-	\item u(t,x) : Densité de population  $\ \in[0,1]$ 
-    \item $d$ : Constante de diffusion 
+	\item u(t,x) : Densité de population à la position x et au temps t. 
+    \item $d$ : Constante de diffusion. 
+    \item $f$ : Terme de réaction.
 \end{itemize}
 \end{frame}
 
@@ -84,47 +119,57 @@ peut-être pas besoin de slide... le slide avec le titre intro peut suffire
 \subsection{Présentation du modèle}
 \begin{frame}{Présentation du modèle}{}
 \begin{block}{Croissance Logistique}
-	$$\frac{\partial u(t,x)}{\partial t}=f(u(t,x))+d\Delta u(t,x)$$
-	$$f(u(t,x))=\alpha u (1 - \dfrac{u}{K}) $$
+	$$\frac{\partial u(t,x)}{\partial t}=\alpha  u(t,x) \left( 1 - \dfrac{u(t,x)}{K}\right) +d\Delta u(t,x),$$
 \end{block}
 \begin{itemize}
-    \item $K$ : Capacité de transport 
-    \item $\alpha$ : Taux de croissance maximum
+    \item $K$ : Capacité du milieu liée à des facteurs locaux environnementaux ($K> 0$).
+    \item $\alpha$ : Taux de croissance intrinsèque de la population ($\alpha >0$).
 \end{itemize}
 \end{frame}
 
 \subsection{Analyse mathématique}
-\begin{frame}{Analyse mathématique}{}
-\begin{itemize}
-	\item[$\bullet$] Équilibres: $u=0 {\ et\ } u=K$
-	\item[$\bullet$] MONOSTABLE
-	\item[$\bullet$] Vitesse minimale $c_0=2\sqrt{\alpha}$
-\end{itemize}
+\begin{frame}{Analyse mathématique}
+	\begin{block}{Analyse de la partie réaction}
+	 0 équilibre instable et K équilibre stable
+		
+	\end{block}
+	
+	\begin{block}{Analyse de l'équation de réaction-diffusion}
+	 L'équation de réaction diffusion est de type \textbf{KPP monostable}.
+		\begin{itemize}
+		
+			\item[$\bullet$] Pour tout $c> 2 \sqrt{\alpha}$ il existe un unique front d'onde U(z) monotone se propageant à la vitesse c tel que $lim_{z \to + \infty}U(z) =0$ et  $lim_{z \to - \infty} U(z)=K$.
+
+			
+			\item[$\bullet$] Effet \textit{"hair trigger"}: Si on prend une condition initiale positive sur un intervalle borné et nul en dehors de l'intervalle, alors la solution converge vers K à la vitesse $2\sqrt{\alpha}$.
+			
+		\end{itemize}
+	\end{block}	
+	
+	
+
 \end{frame}
 
+
 \subsection{Simulations numériques}
-\begin{frame}{Propagation 1D}{}
+
+\begin{frame}{Propagation d'un front d'onde en 1D}{}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.55\linewidth]{SimulationKPP/figures1/FrontOnde2}\hfill
+		\includegraphics[width=0.40\linewidth]{SimulationKPP/figures1/FrontOnde1}\hfill
+		\caption{Propagation du front d'onde en 1D ( \url{KPP1D.avi})}
+	\end{figure}
+\end{frame}
+
+
+
+\begin{frame}{Effet "hair trigger"}{}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.45\linewidth]{SimulationKPP/TrigerEffect/fronts}\hfill
 	\includegraphics[width=0.55\linewidth]{SimulationKPP/TrigerEffect/Surf}\hfill
-	\caption{Propagation du front d'onde en 1D avec une petite perturbation initiale}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Propagation 2D}{}
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=1\linewidth]{SimulationKPP/KPP13}
-    \caption{Propagation du front d'onde en 2D }
-\end{figure}
-\end{frame}
-
-\begin{frame}{Propagation 2D vu de haut}{}
-\begin{figure}[H]
-	\centering
-    \includegraphics[width=1\linewidth]{SimulationKPP/KPP15}
-    \caption{Propagation du front d'onde en 2D}
+	\caption{Propagation du front d'onde en 1D avec une petite perturbation initiale à support compact.}
 \end{figure}
 \end{frame}
 
@@ -135,15 +180,7 @@ peut-être pas besoin de slide... le slide avec le titre intro peut suffire
 	\includegraphics[width=0.5\linewidth]{SimulationKPP/Enviro/montagne3}\hfill
 	\includegraphics[width=0.5\linewidth]{SimulationKPP/Enviro/montagne5}\hfill
 	\includegraphics[width=0.5\linewidth]{SimulationKPP/Enviro/montagne8}
-	\caption{Diffusion 2D de la population face à une montagne}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Effet d'une barrière géographique franchissable}{Vue de haut}
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.9\linewidth]{SimulationKPP/Enviro/montagneVueHaut}
-	\caption{Diffusion 2D de la population face à une montagne}
+	\caption{Diffusion 2D de la population face à une barrière géographique franchissable : \url{KPPFranchissable.avi}}
 \end{figure}
 \end{frame}
 
@@ -154,17 +191,12 @@ peut-être pas besoin de slide... le slide avec le titre intro peut suffire
 	\includegraphics[width=0.5\linewidth]{SimulationKPP/Enviro/poleNord3}\hfill
 	\includegraphics[width=0.5\linewidth]{SimulationKPP/Enviro/poleNord5}\hfill
 	\includegraphics[width=0.5\linewidth]{SimulationKPP/Enviro/poleNord8}
-	\caption{Diffusion 2D}
+	\caption{Diffusion 2D de la population face à une barrière géographique infranchissable : \url{KPPNonFranchissable.avi} }
+	
 \end{figure}
+
 \end{frame}
 
-\begin{frame}{Effet d'une barrière géographique infranchissable}{Vue de haut}
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.9\linewidth]{SimulationKPP/Enviro/PolenordVueHaut}
-	\caption{Diffusion 2D}
-\end{figure}
-\end{frame}
 
 \section{Effet Allee}
 \subsection{Présentation du modèle}
@@ -311,7 +343,7 @@ $$k=\frac{4}{(1-A)^2}$$
 \centering
 \includegraphics[width=0.48\linewidth]{Comp/neand.png}
 \includegraphics[width=0.48\linewidth]{Comp/homo.png}
-\caption{Evolution des fronts d'onde au cours du temps}
+\caption{Evolution des fronts d'onde au cours du temps (\url{Competition.avi} )}
 \end{figure}
 \end{frame}
 
